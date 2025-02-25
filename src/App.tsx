@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,82 +18,86 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
+const App = () => {
+  return (
+    <React.StrictMode>
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout showNav={false}>
-                <Index />
-              </Layout>
-            }
-          />
-          <Route
-            path="/auth"
-            element={
-              <Layout showNav={false}>
-                <Auth />
-              </Layout>
-            }
-          />
-          <Route
-            path="/create-profile"
-            element={
-              <Layout>
-                <CreateProfile />
-              </Layout>
-            }
-          />
-          <Route
-            path="/match"
-            element={
-              <Layout>
-                <Match />
-              </Layout>
-            }
-          />
-          <Route
-            path="/chat"
-            element={
-              <Layout>
-                <Chat />
-              </Layout>
-            }
-          />
-          <Route
-            path="/music"
-            element={
-              <Layout>
-                <Music />
-              </Layout>
-            }
-          />
-          <Route
-            path="/community"
-            element={
-              <Layout>
-                <Community />
-              </Layout>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <Layout>
-                <Settings />
-              </Layout>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Layout showNav={false}>
+                    <Index />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/auth"
+                element={
+                  <Layout showNav={false}>
+                    <Auth />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/create-profile"
+                element={
+                  <Layout>
+                    <CreateProfile />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/match"
+                element={
+                  <Layout>
+                    <Match />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/chat"
+                element={
+                  <Layout>
+                    <Chat />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/music"
+                element={
+                  <Layout>
+                    <Music />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/community"
+                element={
+                  <Layout>
+                    <Community />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <Layout>
+                    <Settings />
+                  </Layout>
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Toaster />
+            <Sonner />
+          </TooltipProvider>
+        </QueryClientProvider>
       </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+    </React.StrictMode>
+  );
+};
 
 export default App;
