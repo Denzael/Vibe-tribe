@@ -26,7 +26,7 @@ const Index = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <Button
             size="lg"
-            onClick={() => navigate("/match")}
+            onClick={() => navigate("/auth")}
             className="group"
           >
             Get Started

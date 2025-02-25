@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
+import Auth from "./pages/Auth";
 import Match from "./pages/Match";
 import Chat from "./pages/Chat";
 import Music from "./pages/Music";
@@ -25,8 +26,16 @@ const App = () => (
           <Route
             path="/"
             element={
-              <Layout>
+              <Layout showNav={false}>
                 <Index />
+              </Layout>
+            }
+          />
+          <Route
+            path="/auth"
+            element={
+              <Layout showNav={false}>
+                <Auth />
               </Layout>
             }
           />
