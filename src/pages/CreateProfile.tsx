@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useProfileStore } from "@/utils/profileStorage";
 
 interface MusicPreferences {
   genres: string[];
@@ -30,6 +30,7 @@ interface MusicPreferences {
 const CreateProfile = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const setProfile = useProfileStore((state) => state.setProfile);
   const [preferences, setPreferences] = useState<MusicPreferences>({
     genres: [],
     artists: [],
@@ -106,6 +107,9 @@ const CreateProfile = () => {
       });
       return;
     }
+
+    // Save profile data to store
+    setProfile(preferences);
 
     // Log the data
     console.log("Profile Data:", preferences);

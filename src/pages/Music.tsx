@@ -1,8 +1,41 @@
 
 import { Button } from "@/components/ui/button";
 import { PlayCircle } from "lucide-react";
+import { useProfileStore } from "@/utils/profileStorage";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Music = () => {
+  const profile = useProfileStore((state) => state.profile);
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (!profile) {
+      toast({
+        title: "Profile Required",
+        description: "Please create your profile first",
+        variant: "destructive",
+      });
+      navigate("/create-profile");
+    }
+  }, [profile, navigate, toast]);
+
+  if (!profile) return null;
+
+  const topArtists = profile.artists.slice(0, 4).map((artist) => ({
+    name: artist,
+    genre: profile.genres[0],
+    image: "https://images.unsplash.com/photo-1618973361585-d066bb75909f",
+  }));
+
+  const recentTracks = profile.songs.slice(0, 3).map((song) => ({
+    title: song,
+    artist: profile.artists[0] || "Unknown Artist",
+    duration: "3:00",
+  }));
+
   return (
     <div className="container max-w-md mx-auto py-8 px-4 space-y-8">
       <section className="space-y-4">
@@ -56,46 +89,5 @@ const Music = () => {
     </div>
   );
 };
-
-const topArtists = [
-  {
-    name: "Taylor Swift",
-    genre: "Pop",
-    image: "https://images.unsplash.com/photo-1618973361585-d066bb75909f",
-  },
-  {
-    name: "Ed Sheeran",
-    genre: "Pop/Folk",
-    image: "https://images.unsplash.com/photo-1516280906200-bf8c2f10174f",
-  },
-  {
-    name: "Drake",
-    genre: "Hip Hop",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
-  },
-  {
-    name: "Dua Lipa",
-    genre: "Pop",
-    image: "https://images.unsplash.com/photo-1604882737276-48efa182febd",
-  },
-];
-
-const recentTracks = [
-  {
-    title: "Cruel Summer",
-    artist: "Taylor Swift",
-    duration: "2:58",
-  },
-  {
-    title: "Shape of You",
-    artist: "Ed Sheeran",
-    duration: "3:53",
-  },
-  {
-    title: "Don't Start Now",
-    artist: "Dua Lipa",
-    duration: "3:03",
-  },
-];
 
 export default Music;
