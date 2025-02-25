@@ -12,6 +12,7 @@ import Chat from "./pages/Chat";
 import Music from "./pages/Music";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
+import CreateProfile from "./pages/CreateProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,14 @@ const App = () => (
             element={
               <Layout showNav={false}>
                 <Auth />
+              </Layout>
+            }
+          />
+          <Route
+            path="/create-profile"
+            element={
+              <Layout>
+                <CreateProfile />
               </Layout>
             }
           />
