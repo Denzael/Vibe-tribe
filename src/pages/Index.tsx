@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Heart, Music, ArrowRight } from "lucide-react";
+import { Heart, Music, ArrowRight, Users } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
